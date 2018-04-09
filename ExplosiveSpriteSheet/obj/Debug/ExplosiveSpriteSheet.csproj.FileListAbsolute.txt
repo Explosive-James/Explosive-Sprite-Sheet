@@ -1,0 +1,10 @@
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\bin\Debug\ExplosiveSpriteSheet.exe
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\bin\Debug\ExplosiveSpriteSheet.pdb
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Debug\ExplosiveSpriteSheet.csprojResolveAssemblyReference.cache
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Debug\ExplosiveSpriteSheet.Properties.Resources.resources
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Debug\ExplosiveSpriteSheet.csproj.GenerateResource.cache
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Debug\ExplosiveSpriteSheet.csproj.CoreCompileInputs.cache
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Debug\ExplosiveSpriteSheet.exe
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Debug\ExplosiveSpriteSheet.pdb
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Debug\ExplosiveSpriteSheet.ExplosiveSpriteSheet.resources
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\bin\Debug\ExplosiveSpriteSheet.exe.config
