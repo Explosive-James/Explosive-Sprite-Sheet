@@ -70,7 +70,7 @@ namespace ExplosiveSpriteSheet
                 gridSizeX.Text = images.Count.ToString();
             }
 
-            UpdateWarning();
+            UpdateLables();
         }
         private void GridSizeY_Leave(object sender, EventArgs e)
         {
@@ -93,7 +93,7 @@ namespace ExplosiveSpriteSheet
                 gridSizeY.Text = images.Count.ToString();
             }
 
-            UpdateWarning();
+            UpdateLables();
         }
         private void GridSizeX_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -153,8 +153,6 @@ namespace ExplosiveSpriteSheet
                 }
             }
 
-            AssignUserInput();
-
             // Setting Grid Size
             if (images.Count > 0)
             {
@@ -162,6 +160,9 @@ namespace ExplosiveSpriteSheet
                 gridSizeX.Text = ((int)Math.Sqrt(images.Count)).ToString();
                 gridSizeY.Text = ((int)Math.Sqrt(images.Count)).ToString();
             }
+
+            AssignUserInput();
+            UpdateLables();
         }
         private void RemoveImage_Click(object sender, EventArgs e)
         {
@@ -248,6 +249,7 @@ namespace ExplosiveSpriteSheet
                         progressBar.Increment(1);
                     }
 
+            progressBar.Value = progressBar.Maximum;
             bit.Save(path);
         }
         private void AssignUserInput()
@@ -260,8 +262,9 @@ namespace ExplosiveSpriteSheet
             moveUp.Enabled = images.Count > 0;
             removeImage.Enabled = images.Count > 0;
         }
-        private void UpdateWarning()
+        private void UpdateLables()
         {
+            // Updating Warning
             int max = gridSize.x * gridSize.y;
             int small = Math.Min(gridSize.x, gridSize.y);
 
@@ -271,6 +274,9 @@ namespace ExplosiveSpriteSheet
                 warningLable.Text = smallGridWarning + $"{images.Count - max} images will be lost!";
             else
                 warningLable.Text = string.Empty;
+
+            // Updating Resolution
+            resolutionLable.Text = $"{imageResolution.x * gridSize.x} x {imageResolution.y * gridSize.y}";
         }
         #endregion
 

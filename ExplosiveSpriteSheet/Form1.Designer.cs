@@ -45,6 +45,8 @@
             this.moveDown = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.warningLable = new System.Windows.Forms.Label();
+            this.resolutionLable = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // imagesDisplay
@@ -57,7 +59,7 @@
             this.imagesDisplay.ItemHeight = 19;
             this.imagesDisplay.Location = new System.Drawing.Point(12, 12);
             this.imagesDisplay.Name = "imagesDisplay";
-            this.imagesDisplay.Size = new System.Drawing.Size(215, 268);
+            this.imagesDisplay.Size = new System.Drawing.Size(215, 325);
             this.imagesDisplay.TabIndex = 0;
             // 
             // openFiles
@@ -84,7 +86,7 @@
             this.gridSizeX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gridSizeX.Font = new System.Drawing.Font("DejaVu Sans Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridSizeX.ForeColor = System.Drawing.Color.White;
-            this.gridSizeX.Location = new System.Drawing.Point(267, 180);
+            this.gridSizeX.Location = new System.Drawing.Point(267, 185);
             this.gridSizeX.MaxLength = 4;
             this.gridSizeX.Name = "gridSizeX";
             this.gridSizeX.Size = new System.Drawing.Size(46, 26);
@@ -100,7 +102,7 @@
             this.gridSizeY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gridSizeY.Font = new System.Drawing.Font("DejaVu Sans Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridSizeY.ForeColor = System.Drawing.Color.White;
-            this.gridSizeY.Location = new System.Drawing.Point(352, 180);
+            this.gridSizeY.Location = new System.Drawing.Point(352, 185);
             this.gridSizeY.MaxLength = 4;
             this.gridSizeY.Name = "gridSizeY";
             this.gridSizeY.Size = new System.Drawing.Size(46, 26);
@@ -115,7 +117,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(234, 158);
+            this.label1.Location = new System.Drawing.Point(234, 163);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 19);
             this.label1.TabIndex = 4;
@@ -126,7 +128,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(234, 183);
+            this.label2.Location = new System.Drawing.Point(234, 188);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 19);
             this.label2.TabIndex = 5;
@@ -137,7 +139,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(320, 183);
+            this.label3.Location = new System.Drawing.Point(320, 188);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 19);
             this.label3.TabIndex = 6;
@@ -149,9 +151,9 @@
             this.saveImage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.saveImage.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveImage.ForeColor = System.Drawing.Color.White;
-            this.saveImage.Location = new System.Drawing.Point(238, 250);
+            this.saveImage.Location = new System.Drawing.Point(233, 307);
             this.saveImage.Name = "saveImage";
-            this.saveImage.Size = new System.Drawing.Size(162, 30);
+            this.saveImage.Size = new System.Drawing.Size(167, 30);
             this.saveImage.TabIndex = 7;
             this.saveImage.Text = "Save Image";
             this.saveImage.UseVisualStyleBackColor = false;
@@ -160,7 +162,7 @@
             // progressBar
             // 
             this.progressBar.ForeColor = System.Drawing.Color.Red;
-            this.progressBar.Location = new System.Drawing.Point(12, 286);
+            this.progressBar.Location = new System.Drawing.Point(12, 343);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(388, 23);
             this.progressBar.Step = 1;
@@ -223,20 +225,44 @@
             // warningLable
             // 
             this.warningLable.AutoSize = true;
-            this.warningLable.Font = new System.Drawing.Font("DejaVu Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warningLable.Font = new System.Drawing.Font("DejaVu Sans Condensed", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.warningLable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(104)))), ((int)(((byte)(104)))));
-            this.warningLable.Location = new System.Drawing.Point(235, 213);
+            this.warningLable.Location = new System.Drawing.Point(233, 264);
             this.warningLable.Name = "warningLable";
-            this.warningLable.Size = new System.Drawing.Size(73, 15);
+            this.warningLable.Size = new System.Drawing.Size(78, 18);
             this.warningLable.TabIndex = 13;
             this.warningLable.Text = "Warning:";
+            // 
+            // resolutionLable
+            // 
+            this.resolutionLable.AutoSize = true;
+            this.resolutionLable.Font = new System.Drawing.Font("DejaVu Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resolutionLable.ForeColor = System.Drawing.Color.White;
+            this.resolutionLable.Location = new System.Drawing.Point(234, 242);
+            this.resolutionLable.Name = "resolutionLable";
+            this.resolutionLable.Size = new System.Drawing.Size(48, 18);
+            this.resolutionLable.TabIndex = 14;
+            this.resolutionLable.Text = "0 x 0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("DejaVu Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(233, 223);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(99, 18);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Resolution:";
             // 
             // ExplosiveSpriteSheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.ClientSize = new System.Drawing.Size(412, 317);
+            this.ClientSize = new System.Drawing.Size(412, 374);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.resolutionLable);
             this.Controls.Add(this.warningLable);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.moveDown);
@@ -281,6 +307,8 @@
         private System.Windows.Forms.Button moveDown;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label warningLable;
+        private System.Windows.Forms.Label resolutionLable;
+        private System.Windows.Forms.Label label5;
     }
 }
 
