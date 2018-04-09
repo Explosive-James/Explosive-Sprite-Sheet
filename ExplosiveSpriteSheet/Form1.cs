@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-// ToDo: Async Await for Saving - Fix empty square problem - Bug Fixing
+// ToDo: Async Await for Saving
 namespace ExplosiveSpriteSheet
 {
     public partial class ExplosiveSpriteSheet : Form
@@ -13,6 +13,9 @@ namespace ExplosiveSpriteSheet
         #region Consts
         private const string imageFiter = "Images (*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png|";
         private const string allFilter = "All files (*.*)|*.*";
+
+        public const string smallGridWarning = "Grid size too small.\n";
+        public const string bigGridWarning = "Grid size too big.\n";
         #endregion
 
         #region Data
@@ -43,12 +46,13 @@ namespace ExplosiveSpriteSheet
 
             // Disabling User Input
             AssignUserInput();
+            warningLable.Text = string.Empty;
         }
 
-        private void GridSizeX_TextChanged(object sender, EventArgs e)
+        private void GridSizeX_Leave(object sender, EventArgs e)
         {
             if (gridSizeX.Text == string.Empty)
-                return;
+                gridSizeX.Text = "1";
 
             // Converting to GridSize
             gridSize = new Vector2(Convert.ToInt32(gridSizeX.Text), Convert.ToInt32(gridSizeY.Text));
@@ -66,13 +70,12 @@ namespace ExplosiveSpriteSheet
                 gridSizeX.Text = images.Count.ToString();
             }
 
-            // Setting other Value
-            SetGridSize(Priority.X);
+            UpdateWarning();
         }
-        private void GridSizeY_TextChanged(object sender, EventArgs e)
+        private void GridSizeY_Leave(object sender, EventArgs e)
         {
             if (gridSizeY.Text == string.Empty)
-                return;
+                gridSizeY.Text = "1";
 
             // Converting to GridSize
             gridSize = new Vector2(Convert.ToInt32(gridSizeX.Text), Convert.ToInt32(gridSizeY.Text));
@@ -90,8 +93,7 @@ namespace ExplosiveSpriteSheet
                 gridSizeY.Text = images.Count.ToString();
             }
 
-            // Setting other Value
-            SetGridSize(Priority.Y);
+            UpdateWarning();
         }
         private void GridSizeX_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -156,9 +158,9 @@ namespace ExplosiveSpriteSheet
             // Setting Grid Size
             if (images.Count > 0)
             {
-                gridSize = new Vector2((int)Math.Sqrt(images.Count), (int)Math.Round(Math.Sqrt(images.Count)));
-                gridSizeX.Text = gridSize.x.ToString();
-                gridSizeY.Text = gridSize.y.ToString();
+                gridSize = new Vector2((int)Math.Sqrt(images.Count), (int)Math.Sqrt(images.Count));
+                gridSizeX.Text = ((int)Math.Sqrt(images.Count)).ToString();
+                gridSizeY.Text = ((int)Math.Sqrt(images.Count)).ToString();
             }
         }
         private void RemoveImage_Click(object sender, EventArgs e)
@@ -209,6 +211,14 @@ namespace ExplosiveSpriteSheet
         }
         private void SaveImage_Click(object sender, EventArgs e)
         {
+            if (warningLable.Text != string.Empty)
+            {
+                string warning = gridSize.x * gridSize.y > images.Count ? bigGridWarning : smallGridWarning;
+                DialogResult drw = MessageBox.Show(warning + "Do you want to continue?", "Warning", MessageBoxButtons.OKCancel);
+                if (drw == DialogResult.Cancel)
+                    return;
+            }
+
             DialogResult dr = saveFileDialog.ShowDialog();
             if (dr == DialogResult.OK)
             {
@@ -240,22 +250,6 @@ namespace ExplosiveSpriteSheet
 
             bit.Save(path);
         }
-
-        private void SetGridSize(Priority preference)
-        {
-            if (preference == Priority.X)
-            {
-                int newY = (int)Math.Round((double)(images.Count / gridSize.x));
-                gridSizeY.Text = newY.ToString();
-                gridSize.y = newY;
-            }
-            else if (preference == Priority.Y)
-            {
-                int newX = (int)Math.Round((double)(images.Count / gridSize.y));
-                gridSizeX.Text = newX.ToString();
-                gridSize.x = newX;
-            }
-        }
         private void AssignUserInput()
         {
             gridSizeX.Enabled = images.Count > 0;
@@ -265,6 +259,18 @@ namespace ExplosiveSpriteSheet
             moveDown.Enabled = images.Count > 0;
             moveUp.Enabled = images.Count > 0;
             removeImage.Enabled = images.Count > 0;
+        }
+        private void UpdateWarning()
+        {
+            int max = gridSize.x * gridSize.y;
+            int small = Math.Min(gridSize.x, gridSize.y);
+
+            if (max >= images.Count + small)
+                warningLable.Text = bigGridWarning + $"{max - images.Count} blank slots!";
+            else if (max < images.Count)
+                warningLable.Text = smallGridWarning + $"{images.Count - max} images will be lost!";
+            else
+                warningLable.Text = string.Empty;
         }
         #endregion
 

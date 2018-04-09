@@ -44,6 +44,7 @@
             this.moveUp = new System.Windows.Forms.Button();
             this.moveDown = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.warningLable = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // imagesDisplay
@@ -83,15 +84,15 @@
             this.gridSizeX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gridSizeX.Font = new System.Drawing.Font("DejaVu Sans Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridSizeX.ForeColor = System.Drawing.Color.White;
-            this.gridSizeX.Location = new System.Drawing.Point(267, 189);
+            this.gridSizeX.Location = new System.Drawing.Point(267, 180);
             this.gridSizeX.MaxLength = 4;
             this.gridSizeX.Name = "gridSizeX";
             this.gridSizeX.Size = new System.Drawing.Size(46, 26);
             this.gridSizeX.TabIndex = 2;
             this.gridSizeX.Text = "1";
             this.gridSizeX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.gridSizeX.TextChanged += new System.EventHandler(this.GridSizeX_TextChanged);
             this.gridSizeX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GridSizeX_KeyPress);
+            this.gridSizeX.Leave += new System.EventHandler(this.GridSizeX_Leave);
             // 
             // gridSizeY
             // 
@@ -99,22 +100,22 @@
             this.gridSizeY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gridSizeY.Font = new System.Drawing.Font("DejaVu Sans Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridSizeY.ForeColor = System.Drawing.Color.White;
-            this.gridSizeY.Location = new System.Drawing.Point(352, 189);
+            this.gridSizeY.Location = new System.Drawing.Point(352, 180);
             this.gridSizeY.MaxLength = 4;
             this.gridSizeY.Name = "gridSizeY";
             this.gridSizeY.Size = new System.Drawing.Size(46, 26);
             this.gridSizeY.TabIndex = 3;
             this.gridSizeY.Text = "1";
             this.gridSizeY.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.gridSizeY.TextChanged += new System.EventHandler(this.GridSizeY_TextChanged);
             this.gridSizeY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GridSizeY_KeyPress);
+            this.gridSizeY.Leave += new System.EventHandler(this.GridSizeY_Leave);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(234, 167);
+            this.label1.Location = new System.Drawing.Point(234, 158);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 19);
             this.label1.TabIndex = 4;
@@ -125,7 +126,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(234, 192);
+            this.label2.Location = new System.Drawing.Point(234, 183);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 19);
             this.label2.TabIndex = 5;
@@ -136,7 +137,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(320, 192);
+            this.label3.Location = new System.Drawing.Point(320, 183);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 19);
             this.label3.TabIndex = 6;
@@ -219,12 +220,24 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Image Settings";
             // 
+            // warningLable
+            // 
+            this.warningLable.AutoSize = true;
+            this.warningLable.Font = new System.Drawing.Font("DejaVu Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warningLable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(104)))), ((int)(((byte)(104)))));
+            this.warningLable.Location = new System.Drawing.Point(235, 213);
+            this.warningLable.Name = "warningLable";
+            this.warningLable.Size = new System.Drawing.Size(73, 15);
+            this.warningLable.TabIndex = 13;
+            this.warningLable.Text = "Warning:";
+            // 
             // ExplosiveSpriteSheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(412, 317);
+            this.Controls.Add(this.warningLable);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.moveDown);
             this.Controls.Add(this.moveUp);
@@ -267,6 +280,7 @@
         private System.Windows.Forms.Button moveUp;
         private System.Windows.Forms.Button moveDown;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label warningLable;
     }
 }
 
