@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExplosiveSpriteSheet));
             this.imagesDisplay = new System.Windows.Forms.ListBox();
             this.openFiles = new System.Windows.Forms.Button();
@@ -47,6 +48,8 @@
             this.warningLable = new System.Windows.Forms.Label();
             this.resolutionLable = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.imageAmounts = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // imagesDisplay
@@ -57,9 +60,9 @@
             this.imagesDisplay.ForeColor = System.Drawing.Color.White;
             this.imagesDisplay.FormattingEnabled = true;
             this.imagesDisplay.ItemHeight = 19;
-            this.imagesDisplay.Location = new System.Drawing.Point(12, 12);
+            this.imagesDisplay.Location = new System.Drawing.Point(12, 31);
             this.imagesDisplay.Name = "imagesDisplay";
-            this.imagesDisplay.Size = new System.Drawing.Size(215, 325);
+            this.imagesDisplay.Size = new System.Drawing.Size(215, 306);
             this.imagesDisplay.TabIndex = 0;
             // 
             // openFiles
@@ -68,7 +71,7 @@
             this.openFiles.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.openFiles.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openFiles.ForeColor = System.Drawing.Color.White;
-            this.openFiles.Location = new System.Drawing.Point(238, 39);
+            this.openFiles.Location = new System.Drawing.Point(238, 31);
             this.openFiles.Name = "openFiles";
             this.openFiles.Size = new System.Drawing.Size(162, 30);
             this.openFiles.TabIndex = 1;
@@ -163,6 +166,7 @@
             // 
             this.progressBar.ForeColor = System.Drawing.Color.Red;
             this.progressBar.Location = new System.Drawing.Point(12, 343);
+            this.progressBar.MarqueeAnimationSpeed = 1;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(388, 23);
             this.progressBar.Step = 1;
@@ -175,7 +179,7 @@
             this.removeImage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.removeImage.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.removeImage.ForeColor = System.Drawing.Color.White;
-            this.removeImage.Location = new System.Drawing.Point(238, 111);
+            this.removeImage.Location = new System.Drawing.Point(238, 103);
             this.removeImage.Name = "removeImage";
             this.removeImage.Size = new System.Drawing.Size(162, 30);
             this.removeImage.TabIndex = 9;
@@ -189,7 +193,7 @@
             this.moveUp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.moveUp.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.moveUp.ForeColor = System.Drawing.Color.White;
-            this.moveUp.Location = new System.Drawing.Point(238, 75);
+            this.moveUp.Location = new System.Drawing.Point(238, 67);
             this.moveUp.Name = "moveUp";
             this.moveUp.Size = new System.Drawing.Size(75, 30);
             this.moveUp.TabIndex = 10;
@@ -203,7 +207,7 @@
             this.moveDown.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.moveDown.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.moveDown.ForeColor = System.Drawing.Color.White;
-            this.moveDown.Location = new System.Drawing.Point(325, 75);
+            this.moveDown.Location = new System.Drawing.Point(325, 67);
             this.moveDown.Name = "moveDown";
             this.moveDown.Size = new System.Drawing.Size(75, 30);
             this.moveDown.TabIndex = 11;
@@ -216,7 +220,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(234, 12);
+            this.label4.Location = new System.Drawing.Point(234, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(143, 19);
             this.label4.TabIndex = 12;
@@ -255,12 +259,29 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Resolution:";
             // 
+            // imageAmounts
+            // 
+            this.imageAmounts.AutoSize = true;
+            this.imageAmounts.Font = new System.Drawing.Font("DejaVu Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imageAmounts.ForeColor = System.Drawing.Color.White;
+            this.imageAmounts.Location = new System.Drawing.Point(12, 9);
+            this.imageAmounts.Name = "imageAmounts";
+            this.imageAmounts.Size = new System.Drawing.Size(166, 19);
+            this.imageAmounts.TabIndex = 16;
+            this.imageAmounts.Text = "Loaded Images: 0";
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1;
+            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
             // ExplosiveSpriteSheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.ClientSize = new System.Drawing.Size(412, 374);
+            this.ClientSize = new System.Drawing.Size(412, 375);
+            this.Controls.Add(this.imageAmounts);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.resolutionLable);
             this.Controls.Add(this.warningLable);
@@ -309,6 +330,8 @@
         private System.Windows.Forms.Label warningLable;
         private System.Windows.Forms.Label resolutionLable;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label imageAmounts;
+        private System.Windows.Forms.Timer timer;
     }
 }
 

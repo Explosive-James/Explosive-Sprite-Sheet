@@ -1,0 +1,9 @@
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\bin\Release\ExplosiveSpriteSheet.exe.config
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\bin\Release\ExplosiveSpriteSheet.exe
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\bin\Release\ExplosiveSpriteSheet.pdb
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Release\ExplosiveSpriteSheet.ExplosiveSpriteSheet.resources
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Release\ExplosiveSpriteSheet.Properties.Resources.resources
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Release\ExplosiveSpriteSheet.csproj.GenerateResource.cache
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Release\ExplosiveSpriteSheet.csproj.CoreCompileInputs.cache
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Release\ExplosiveSpriteSheet.exe
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Release\ExplosiveSpriteSheet.pdb
