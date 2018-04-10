@@ -26,7 +26,7 @@ namespace ExplosiveSpriteSheet
         private Vector2 imageResolution;
         private Vector2 gridSize;
 
-        private int progress;
+        private LockableInt progress = new LockableInt();
         #endregion
 
         #region Form Functions
@@ -117,10 +117,14 @@ namespace ExplosiveSpriteSheet
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if(progress > 0)
+            lock (progress)
             {
-                progressBar.Increment(progress);
-                progress = 0;
+                if (progress.value > 0)
+                {
+                    progressBar.Increment(progress.value);
+                    progress.value = 0;
+
+                }
             }
         }
 
@@ -264,7 +268,7 @@ namespace ExplosiveSpriteSheet
                 try
                 {
                     finalImage.Save(saveFileDialog.FileName);
-                    MessageBox.Show(saveFileDialog.FileName, "Image Saved");
+                    MessageBox.Show($"Image Saved: {saveFileDialog.FileName}", "Saved Image");
                 }
                 catch (Exception ex)
                 {
@@ -286,7 +290,11 @@ namespace ExplosiveSpriteSheet
                     for (int y = 0; y < imageResolution.y; y++)
                     {
                         bit.SetPixel(imageResolution.x * (i % gridSize.x) + x, imageResolution.y * (i / gridSize.x) + y, images[i].GetPixel(x, y));
-                        progress++;
+
+                        lock (progress)
+                        {
+                            progress.value++;
+                        }
                     }
 
             return bit;

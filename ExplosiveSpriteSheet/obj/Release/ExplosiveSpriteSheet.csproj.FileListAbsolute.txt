@@ -7,3 +7,4 @@ C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\Explos
 C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Release\ExplosiveSpriteSheet.csproj.CoreCompileInputs.cache
 C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Release\ExplosiveSpriteSheet.exe
 C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Release\ExplosiveSpriteSheet.pdb
+C:\Users\James\Documents\Visual Studio 2017\Projects\ExplosiveSpriteSheet\ExplosiveSpriteSheet\obj\Release\ExplosiveSpriteSheet.csprojResolveAssemblyReference.cache
