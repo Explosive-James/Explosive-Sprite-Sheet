@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Threading;
 using System.Threading.Tasks;
 
-// ToDo: Async Await for Saving
 namespace ExplosiveSpriteSheet
 {
     public partial class ExplosiveSpriteSheet : Form
     {
-        private enum Priority { X, Y };
-
         #region Consts
         private const string imageFiter = "Images (*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png|";
         private const string allFilter = "All files (*.*)|*.*";
@@ -22,11 +18,12 @@ namespace ExplosiveSpriteSheet
 
         #region Data
         private List<Bitmap> images;
+        private List<string> paths;
 
         private Vector2 imageResolution;
         private Vector2 gridSize;
 
-        private LockableInt progress = new LockableInt();
+        private int progress;
         #endregion
 
         #region Form Functions
@@ -47,6 +44,7 @@ namespace ExplosiveSpriteSheet
 
             // Initializing Images List
             images = new List<Bitmap>();
+            paths = new List<string>();
 
             // Disabling User Input
             AssignUserInput();
@@ -117,18 +115,10 @@ namespace ExplosiveSpriteSheet
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            lock (progress)
-            {
-                if (progress.value > 0)
-                {
-                    progressBar.Increment(progress.value);
-                    progress.value = 0;
-
-                }
-            }
+            progressBar.Value = progress;
         }
 
-        private void OpenFiles_Click(object sender, EventArgs e)
+        private async void OpenFiles_Click(object sender, EventArgs e)
         {
             DialogResult dr = openFileDialog.ShowDialog();
             if (dr != DialogResult.OK)
@@ -138,42 +128,37 @@ namespace ExplosiveSpriteSheet
             progressBar.Value = 0;
             progressBar.Maximum = openFileDialog.FileNames.Length;
 
+            paths = new List<string>(openFileDialog.FileNames);
+
             // Reading files
-            foreach (string file in openFileDialog.FileNames)
+            while (paths.Count > 0)
             {
                 // Increment Bar
                 progressBar.Increment(1);
 
-                try
-                {
-                    // Loading Images
-                    Bitmap image = (Bitmap)Image.FromFile(file);
-                    Vector2 resolution = new Vector2(image.Width, image.Height);
+                // Loading Images
+                Bitmap image = await Task.Run(LoadImage);
+                Vector2 resolution = new Vector2(image.Width, image.Height);
 
-                    // Setting Image Resolution
-                    if (images.Count == 0)
-                        imageResolution = resolution;
+                // Setting Image Resolution
+                if (images.Count == 0)
+                    imageResolution = resolution;
 
-                    // Adding Image to List
-                    if (resolution.x == imageResolution.x && resolution.y == imageResolution.y)
-                    {
-                        images.Add(image);
-                        imagesDisplay.Items.Add(file.Substring(file.LastIndexOf("\\")).TrimStart('\\'));
-                    }
-                    // Inconsistent image size
-                    else
-                    {
-                        MessageBox.Show(
-                            $"Image : {file} is not consistent with other image resolutions. \n\n" +
-                            $"Image resolution needs to be {imageResolution.x} x {imageResolution.y}", "Inconsistent Size");
-                    }
-                }
-                catch (Exception ex)
+                // Adding Image to List
+                if (resolution.x == imageResolution.x && resolution.y == imageResolution.y)
                 {
-                    // Could not load the image
-                    MessageBox.Show($"Cannot load image: {file} ! \n" +
-                        $"Error: {ex.Message}", "Loading Error");
+                    images.Add(image);
+                    imagesDisplay.Items.Add(paths[0].Substring(paths[0].LastIndexOf("\\")).TrimStart('\\'));
                 }
+                // Inconsistent image size
+                else
+                {
+                    MessageBox.Show(
+                        $"Image : {paths[0]} is not consistent with other image resolutions. \n\n" +
+                        $"Image resolution needs to be {imageResolution.x} x {imageResolution.y}", "Inconsistent Size");
+                }
+
+                paths.RemoveAt(0);
             }
 
             // Setting Grid Size
@@ -189,18 +174,27 @@ namespace ExplosiveSpriteSheet
         }
         private void RemoveImage_Click(object sender, EventArgs e)
         {
-            if (imagesDisplay.SelectedIndex != -1)
+            try
             {
-                int index = imagesDisplay.SelectedIndex;
+                if (imagesDisplay.SelectedIndex != -1)
+                {
+                    int index = imagesDisplay.SelectedIndex;
 
-                images.RemoveAt(index);
-                imagesDisplay.Items.RemoveAt(index);
+                    images.RemoveAt(index);
+                    imagesDisplay.Items.RemoveAt(index);
 
-                if (images.Count > 0)
-                    imagesDisplay.SelectedIndex = index;
+                    if (images.Count > 0)
+                        imagesDisplay.SelectedIndex = index;
 
-                AssignUserInput();
-                UpdateLables();
+                    AssignUserInput();
+                    UpdateLables();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Could not remove the image
+                MessageBox.Show($"Cannot remove image! \n" +
+                    $"Error: {ex.Message}", "Loading Error");
             }
         }
         private void MoveUp_Click(object sender, EventArgs e)
@@ -253,6 +247,7 @@ namespace ExplosiveSpriteSheet
             if (dr == DialogResult.OK)
             {
                 // Setting ProgressBar
+                progress = 0;
                 progressBar.Value = 0;
                 progressBar.Maximum = (imageResolution.x * gridSize.x) * (imageResolution.y * gridSize.y);
                 timer.Start();
@@ -290,14 +285,27 @@ namespace ExplosiveSpriteSheet
                     for (int y = 0; y < imageResolution.y; y++)
                     {
                         bit.SetPixel(imageResolution.x * (i % gridSize.x) + x, imageResolution.y * (i / gridSize.x) + y, images[i].GetPixel(x, y));
-
-                        lock (progress)
-                        {
-                            progress.value++;
-                        }
+                        progress++;
                     }
 
             return bit;
+        }
+        private async Task<Bitmap> LoadImage()
+        {
+            Bitmap image = null;
+
+            try
+            {
+                image = (Bitmap)Image.FromFile(paths[0]);
+            }
+            catch (Exception ex)
+            {
+                // Could not load the image
+                MessageBox.Show($"Cannot load image: {paths[0]} ! \n" +
+                    $"Error: {ex.Message}", "Loading Error");
+            }
+
+            return image;
         }
         private void AssignUserInput()
         {
